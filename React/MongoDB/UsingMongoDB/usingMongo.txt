@@ -1,0 +1,226 @@
+> use my_first-db
+switched to db my_first-db
+> db.createCollection("students")
+{ "ok" : 1 }
+> show collections
+students
+> db.ninjas.insert({name: "amro", lucky_number: 12345, birthday:{day:8,month:1,year:2003} })
+WriteResult({ "nInserted" : 1 })
+> db.ninjas.find({name: "amro"})
+{ "_id" : ObjectId("610116322c37db79af3e22a4"), "name" : "amro", "lucky_number" : 12345, "birthday" : { "day" : 8, "month" : 1, "year" : 2003 } }
+> db.ninjas.insert({name: "Nizam", lucky_number: 12345, birthday:{day:8,month:1,year:2003} })
+WriteResult({ "nInserted" : 1 })
+> db.ninjas.insert({name: "mohammadRR", lucky_number: 12345, birthday:{day:8,month:1,year:2003} })
+WriteResult({ "nInserted" : 1 })
+> db.ninjas.find({})
+{ "_id" : ObjectId("610116322c37db79af3e22a4"), "name" : "amro", "lucky_number" : 12345, "birthday" : { "day" : 8, "month" : 1, "year" : 2003 } }
+{ "_id" : ObjectId("610116852c37db79af3e22a5"), "name" : "Nizam", "lucky_number" : 12345, "birthday" : { "day" : 8, "month" : 1, "year" : 2003 } }
+{ "_id" : ObjectId("610116912c37db79af3e22a6"), "name" : "mohammadRR", "lucky_number" : 12345, "birthday" : { "day" : 8, "month" : 1, "year" : 2003 } }
+> show collections
+ninjas
+students
+> db.ninjas.find()
+{ "_id" : ObjectId("610116322c37db79af3e22a4"), "name" : "amro", "lucky_number" : 12345, "birthday" : { "day" : 8, "month" : 1, "year" : 2003 } }
+{ "_id" : ObjectId("610116852c37db79af3e22a5"), "name" : "Nizam", "lucky_number" : 12345, "birthday" : { "day" : 8, "month" : 1, "year" : 2003 } }
+{ "_id" : ObjectId("610116912c37db79af3e22a6"), "name" : "mohammadRR", "lucky_number" : 12345, "birthday" : { "day" : 8, "month" : 1, "year" : 2003 } }
+> db.ninjas.find({"lucky_number"}=12345)
+uncaught exception: SyntaxError: missing : after property id :
+@(shell):1:30
+> db.ninjas.find({"lucky_number"=12345})
+uncaught exception: SyntaxError: missing : after property id :
+@(shell):1:30
+> db.ninjas.find({"lucky_number":12345})
+{ "_id" : ObjectId("610116322c37db79af3e22a4"), "name" : "amro", "lucky_number" : 12345, "birthday" : { "day" : 8, "month" : 1, "year" : 2003 } }
+{ "_id" : ObjectId("610116852c37db79af3e22a5"), "name" : "Nizam", "lucky_number" : 12345, "birthday" : { "day" : 8, "month" : 1, "year" : 2003 } }
+{ "_id" : ObjectId("610116912c37db79af3e22a6"), "name" : "mohammadRR", "lucky_number" : 12345, "birthday" : { "day" : 8, "month" : 1, "year" : 2003 } }
+> db.ninjas.find({"lucky_number":{$gt:3}})
+{ "_id" : ObjectId("610116322c37db79af3e22a4"), "name" : "amro", "lucky_number" : 12345, "birthday" : { "day" : 8, "month" : 1, "year" : 2003 } }
+{ "_id" : ObjectId("610116852c37db79af3e22a5"), "name" : "Nizam", "lucky_number" : 12345, "birthday" : { "day" : 8, "month" : 1, "year" : 2003 } }
+{ "_id" : ObjectId("610116912c37db79af3e22a6"), "name" : "mohammadRR", "lucky_number" : 12345, "birthday" : { "day" : 8, "month" : 1, "year" : 2003 } }
+> db.ninjas.find({"lucky_number":{$gte:10}})
+{ "_id" : ObjectId("610116322c37db79af3e22a4"), "name" : "amro", "lucky_number" : 12345, "birthday" : { "day" : 8, "month" : 1, "year" : 2003 } }
+{ "_id" : ObjectId("610116852c37db79af3e22a5"), "name" : "Nizam", "lucky_number" : 12345, "birthday" : { "day" : 8, "month" : 1, "year" : 2003 } }
+{ "_id" : ObjectId("610116912c37db79af3e22a6"), "name" : "mohammadRR", "lucky_number" : 12345, "birthday" : { "day" : 8, "month" : 1, "year" : 2003 } }
+> db.ninjas.find({"lucky_number":{$lte:10}})
++++++++++++++++++++++++++++++++++++++++++ first 8 of them
+
+10-Add a field to each student collection called 'interests' that is an ARRAY. It should contain the following entries: 'coding', 'brunch', 'MongoDB'. Do this in ONE operation.
+
+e) db.ninjas.update({},{$set:{"intrests":{"codeing":"oh nana",branch:"salfit",mongodb:"ramall"}}},false,true)db.ninjas.update({},{$set:{"intrests":{"codeing":"oh nana",branch:"salfit",mongodb:"ramalls"}}},false,trdb.ninjas.update({},{$set:{"intrests":{"codeing":"oh nana",branch:"salfit",mongodb:"ramallss"}}},false,true)e)
+WriteResult({ "nMatched" : 4, "nUpserted" : 0, "nModified" : 4 })
+> db.ninjas.find()
+{ "_id" : ObjectId("610116322c37db79af3e22a4"), "name" : "amro", "lucky_number" : 12345, "birthday" : { "day" : 8, "month" : 1, "year" : 2003 }, "intrests" : { "codeing" : "oh nana", "branch" : "salfit", "mongodb" : "ramallss" } }
+{ "_id" : ObjectId("610116852c37db79af3e22a5"), "name" : "Nizam", "lucky_number" : 12345, "birthday" : { "day" : 8, "month" : 1, "year" : 2003 }, "intrests" : { "codeing" : "oh nana", "branch" : "salfit", "mongodb" : "ramallss" } }
+{ "_id" : ObjectId("610116912c37db79af3e22a6"), "name" : "mohammadRR", "lucky_number" : 12345, "birthday" : { "day" : 8, "month" : 1, "year" : 2003 }, "intrests" : { "codeing" : "oh nana", "branch" : "salfit", "mongodb" : "ramallss" } }
+{ "_id" : ObjectId("6101265c2c37db79af3e22a8"), "item" : "card", "qty" : 15, "intrests" : { "codeing" : "oh nana", "branch" : "salfit", "mongodb" : "ramallss" } }
+> 
+
+11-> db.ninjas.update({_id:ObjectId("610116852c37db79af3e22a5")}, {$set: {"intrests":"Jakarta Pusat"}})
+
+
+
+12- Remove the 'taxes' interest you just added.
+
+ db.ninjas.update({_id:ObjectId("61014a784a5afbc854bc7418")},{$pop:{intrests:-1}})
+WriteResult({ "nMatched" : 1, "nUpserted" : 0, "nModified" : 1 })
+> db.ninjas.find()
+{ "_id" : ObjectId("61014a6b4a5afbc854bc7417"), "name" : "lalaland", "lucky_number" : 12345, "intrests" : [ "day", "month", "year" ] }
+{ "_id" : ObjectId("61014a784a5afbc854bc7418"), "name" : "amro", "lucky_number" : 155, "intrests" : [ "month", "year" ] }
+>
+
+13- remove doucment**
+
+> db.ninjas.remove({intrests:{ "taxes":"jbjjbuj"}})
+WriteResult({ "nRemoved" : 1 })
+> db.ninjas.find()
+{ "_id" : ObjectId("610116322c37db79af3e22a4"), "name" : "amro", "lucky_number" : 12345, "birthday" : { "day" : 8, "month" : 1, "year" : 2003 }, "intrests" : { "codeing" : "oh nana", "branch" : "salfit", "mongodb" : "ramallss" } }
+{ "_id" : ObjectId("610116852c37db79af3e22a5"), "intrests" : "football", "name" : "Jakarta Pusat" }
+{ "_id" : ObjectId("6101265c2c37db79af3e22a8"), "item" : "card", "qty" : 15, "intrests" : { "codeing" : "oh nana", "branch" : "salfit", "mongodb" : "ramallss" } }
+>
+
+
+14-remove by name
+
+> db.ninjas.find()
+{ "_id" : ObjectId("61014a6b4a5afbc854bc7417"), "name" : "lalaland", "lucky_number" : 12345, "intrests" : [ "day", "month", "year" ] }
+{ "_id" : ObjectId("61014a784a5afbc854bc7418"), "name" : "amro", "lucky_number" : 155, "intrests" : [ "month", "year" ] }
+> db.ninjas.remove({name:amro})
+uncaught exception: ReferenceError: amro is not defined :
+@(shell):1:19
+> db.ninjas.remove({name:"amro"})
+WriteResult({ "nRemoved" : 1 })
+> db.ninjas.find()
+{ "_id" : ObjectId("61014a6b4a5afbc854bc7417"), "name" : "lalaland", "lucky_number" : 12345, "intrests" : [ "day", "month", "year" ] }
+>
+
+15-Remove a student whose lucky number is greater than 5 (JUST ONE)
+
+> db.ninjas.find()
+{ "_id" : ObjectId("61014d194a5afbc854bc7419"), "name" : "amro", "lucky_number" : 155, "intrests" : [ "day", "month", "year" ] }
+{ "_id" : ObjectId("61014d264a5afbc854bc741a"), "name" : "mohammad", "lucky_number" : 10, "intrests" : [ "day", "month", "year" ] }
+{ "_id" : ObjectId("61014d3e4a5afbc854bc741b"), "name" : "rasputin", "lucky_number" : 5, "intrests" : [ "day", "month", "year" ] }
+{ "_id" : ObjectId("61014d4c4a5afbc854bc741c"), "name" : "rora", "lucky_number" : 58, "intrests" : [ "day", "month", "year" ] }
+> db.ninjas.remove({lucky_number: {$gt: 11}},true)
+WriteResult({ "nRemoved" : 1 })
+> db.ninjas.find()
+{ "_id" : ObjectId("61014d264a5afbc854bc741a"), "name" : "mohammad", "lucky_number" : 10, "intrests" : [ "day", "month", "year" ] }
+{ "_id" : ObjectId("61014d3e4a5afbc854bc741b"), "name" : "rasputin", "lucky_number" : 5, "intrests" : [ "day", "month", "year" ] }
+{ "_id" : ObjectId("61014d4c4a5afbc854bc741c"), "name" : "rora", "lucky_number" : 58, "intrests" : [ "day", "month", "year" ] }
+>
+
+16-Add a field to each student collection called 'number_of_belts' and set it to 0.
+> db.ninjas.find()
+{ "_id" : ObjectId("61014d264a5afbc854bc741a"), "location" : "Mountain View", "interests" : [ "snowboarding" ], "fuck" : [ "snowboarding" ] }
+{ "_id" : ObjectId("61014d3e4a5afbc854bc741b"), "name" : "rasputin", "lucky_number" : 5, "intrests" : [ "day", "month", "year" ] }
+{ "_id" : ObjectId("61014d4c4a5afbc854bc741c"), "location" : "Mountain View" }
+> db.ninjas.update({},{$set:{"newbro":0}},false,true)
+WriteResult({ "nMatched" : 3, "nUpserted" : 0, "nModified" : 3 })
+> db.ninjas.find()
+{ "_id" : ObjectId("61014d264a5afbc854bc741a"), "location" : "Mountain View", "interests" : [ "snowboarding" ], "fuck" : [ "snowboarding" ], "newbro" : 0 }
+{ "_id" : ObjectId("61014d3e4a5afbc854bc741b"), "name" : "rasputin", "lucky_number" : 5, "intrests" : [ "day", "month", "year" ], "newbro" : 0 }
+{ "_id" : ObjectId("61014d4c4a5afbc854bc741c"), "location" : "Mountain View", "newbro" : 0 }
+> db.ninjas.update({},{$set:{"newbro":0}})
+WriteResult({ "nMatched" : 1, "nUpserted" : 0, "nModified" : 0 })
+> db.ninjas.find()
+{ "_id" : ObjectId("61014d264a5afbc854bc741a"), "location" : "Mountain View", "interests" : [ "snowboarding" ], "fuck" : [ "snowboarding" ], "newbro" : 0 }
+{ "_id" : ObjectId("61014d3e4a5afbc854bc741b"), "name" : "rasputin", "lucky_number" : 5, "intrests" : [ "day", "month", "year" ], "newbro" : 0 }
+{ "_id" : ObjectId("61014d4c4a5afbc854bc741c"), "location" : "Mountain View", "newbro" : 0 }
+> db.ninjas.update({},{$set:{"newo":0}})
+WriteResult({ "nMatched" : 1, "nUpserted" : 0, "nModified" : 1 })
+> db.ninjas.update({},{$set:{"newo":0}})
+
+17-Increment this field by 1 for all students in Washington (Seattle Dojo).
+
+
+> db.ninjas.update({location: "Mountain View"}, {$set: {newbro:2}},true)
+WriteResult({ "nMatched" : 1, "nUpserted" : 0, "nModified" : 0 })
+> db.ninjas.update({location: "Mountain View"}, {$set: {newbro:2}},false)
+WriteResult({ "nMatched" : 1, "nUpserted" : 0, "nModified" : 0 })
+> db.ninjas.find()
+{ "_id" : ObjectId("61014d264a5afbc854bc741a"), "location" : "Mountain View", "interests" : [ "snowboarding" ], "fuck" : [ "snowboarding" ], "newbro" : 2, "newo" : 0 }
+{ "_id" : ObjectId("61014d3e4a5afbc854bc741b"), "newbro" : 1, "location" : "Mountain View" }
+{ "_id" : ObjectId("61014d4c4a5afbc854bc741c"), "location" : "Mountain View", "newbro" : 0 }
+> db.ninjas.updateMany({"created": false}, {"$set":{"created": true}});
+{ "acknowledged" : true, "matchedCount" : 0, "modifiedCount" : 0 }
+> db.ninjas.find()
+{ "_id" : ObjectId("61014d264a5afbc854bc741a"), "location" : "Mountain View", "interests" : [ "snowboarding" ], "fuck" : [ "snowboarding" ], "newbro" : 2, "newo" : 0 }
+{ "_id" : ObjectId("61014d3e4a5afbc854bc741b"), "newbro" : 1, "location" : "Mountain View" }
+{ "_id" : ObjectId("61014d4c4a5afbc854bc741c"), "location" : "Mountain View", "newbro" : 0 }
+> db.ninjas.updateMany({location: "Mountain View"}, {"$set":{newbro: 155}});
+{ "acknowledged" : true, "matchedCount" : 3, "modifiedCount" : 3 }
+> db.ninjas.find()
+{ "_id" : ObjectId("61014d264a5afbc854bc741a"), "location" : "Mountain View", "interests" : [ "snowboarding" ], "fuck" : [ "snowboarding" ], "newbro" : 155, "newo" : 0 }
+{ "_id" : ObjectId("61014d3e4a5afbc854bc741b"), "newbro" : 155, "location" : "Mountain View" }
+{ "_id" : ObjectId("61014d4c4a5afbc854bc741c"), "location" : "Mountain View", "newbro" : 155 }
+>
+
+18-Rename the 'number_of_belts' field to 'belts_earned'
+
+> db.ninjas.find()
+{ "_id" : ObjectId("61014d264a5afbc854bc741a"), "location" : "Mountain View", "interests" : [ "snowboarding" ], "fuck" : [ "snowboarding" ], "newbro" : 2, "newo" : 0 }
+{ "_id" : ObjectId("61014d3e4a5afbc854bc741b"), "newbro" : 1, "location" : "Mountain View" }
+{ "_id" : ObjectId("61014d4c4a5afbc854bc741c"), "location" : "Mountain View", "newbro" : 0 }
+> db.ninjas.updateMany({location: "Mountain View"}, {"$set":{newbro: 155}});
+{ "acknowledged" : true, "matchedCount" : 3, "modifiedCount" : 3 }
+> db.ninjas.find()
+{ "_id" : ObjectId("61014d264a5afbc854bc741a"), "location" : "Mountain View", "interests" : [ "snowboarding" ], "fuck" : [ "snowboarding" ], "newbro" : 155, "newo" : 0 }
+{ "_id" : ObjectId("61014d3e4a5afbc854bc741b"), "newbro" : 155, "location" : "Mountain View" }
+{ "_id" : ObjectId("61014d4c4a5afbc854bc741c"), "location" : "Mountain View", "newbro" : 155 }
+> db.ninjas.updateMany( {}, { $rename: { "newbro": "belt" } } )
+{ "acknowledged" : true, "matchedCount" : 3, "modifiedCount" : 3 }
+> db.ninjas.find()
+{ "_id" : ObjectId("61014d264a5afbc854bc741a"), "location" : "Mountain View", "interests" : [ "snowboarding" ], "fuck" : [ "snowboarding" ], "newo" : 0, "belt" : 155 }
+{ "_id" : ObjectId("61014d3e4a5afbc854bc741b"), "location" : "Mountain View", "belt" : 155 }
+{ "_id" : ObjectId("61014d4c4a5afbc854bc741c"), "location" : "Mountain View", "belt" : 155 }
+>
+
+19-Remove the 'lucky_number' field
+
+> db.ninjas.updateMany({}, { $unset : { location : 1} })
+{ "acknowledged" : true, "matchedCount" : 3, "modifiedCount" : 3 }
+> db.ninjas.find()
+{ "_id" : ObjectId("61014d264a5afbc854bc741a"), "interests" : [ "snowboarding" ], "fuck" : [ "snowboarding" ], "newo" : 0, "belt" : 155 }
+{ "_id" : ObjectId("61014d3e4a5afbc854bc741b"), "belt" : 155 }
+{ "_id" : ObjectId("61014d4c4a5afbc854bc741c"), "belt" : 155 }
+>
+
+20-Add a 'updated_on' field, and set the value as the current date.
+
+
+> db.ninjas.find()
+{ "_id" : ObjectId("61014d264a5afbc854bc741a"), "interests" : [ "snowboarding" ], "fuck" : [ "snowboarding" ], "newo" : 0, "belt" : 155 }
+{ "_id" : ObjectId("61014d3e4a5afbc854bc741b"), "belt" : 155 }
+{ "_id" : ObjectId("61014d4c4a5afbc854bc741c"), "belt" : 155 }
+{ "_id" : ObjectId("610159884a5afbc854bc741d"), "belt" : 155, "lastmodifiy" : "Wed Jul 28 2021 16:20:08 GMT+0300 (Jerusalem Daylight Time)", "name" : "asm;a" }
+> db.ninjas.updateMany({}, {$set: {"rararaaa": Date()}})
+{ "acknowledged" : true, "matchedCount" : 4, "modifiedCount" : 4 }
+> db.ninjas.find()
+{ "_id" : ObjectId("61014d264a5afbc854bc741a"), "interests" : [ "snowboarding" ], "fuck" : [ "snowboarding" ], "newo" : 0, "belt" : 155, "rararaaa" : "Wed Jul 28 2021 16:22:22 GMT+0300 (Jerusalem Daylight Time)" }
+{ "_id" : ObjectId("61014d3e4a5afbc854bc741b"), "belt" : 155, "rararaaa" : "Wed Jul 28 2021 16:22:22 GMT+0300 (Jerusalem Daylight Time)" }
+{ "_id" : ObjectId("61014d4c4a5afbc854bc741c"), "belt" : 155, "rararaaa" : "Wed Jul 28 2021 16:22:22 GMT+0300 (Jerusalem Daylight Time)" }
+{ "_id" : ObjectId("610159884a5afbc854bc741d"), "belt" : 155, "lastmodifiy" : "Wed Jul 28 2021 16:20:08 GMT+0300 (Jerusalem Daylight Time)", "name" : "asm;a", "rararaaa" : "Wed Jul 28 2021 16:22:22 GMT+0300 (Jerusalem Daylight Time)" }
+>
+
+
+18-Get all students whose lucky number is between 1 and 9 (inclusive)
+
+> db.ninjas.find()
+{ "_id" : ObjectId("61014d264a5afbc854bc741a"), "interests" : [ "snowboarding" ], "fuck" : [ "snowboarding" ], "newo" : 0, "belt" : 155 }
+{ "_id" : ObjectId("61014d3e4a5afbc854bc741b"), "belt" : 155 }
+{ "_id" : ObjectId("61014d4c4a5afbc854bc741c"), "belt" : 155 }
+{ "_id" : ObjectId("610159884a5afbc854bc741d"), "belt" : 155, "lastmodifiy" : "Wed Jul 28 2021 16:20:08 GMT+0300 (Jerusalem Daylight Time)", "name" : "asm;a" }
+> db.ninjas.updateMany({}, {$set: {"rararaaa": Date()}})
+{ "acknowledged" : true, "matchedCount" : 4, "modifiedCount" : 4 }
+> db.ninjas.find()
+{ "_id" : ObjectId("61014d264a5afbc854bc741a"), "interests" : [ "snowboarding" ], "fuck" : [ "snowboarding" ], "newo" : 0, "belt" : 155, "rararaaa" : "Wed Jul 28 2021 16:22:22 GMT+0300 (Jerusalem Daylight Time)" }
+{ "_id" : ObjectId("61014d3e4a5afbc854bc741b"), "belt" : 155, "rararaaa" : "Wed Jul 28 2021 16:22:22 GMT+0300 (Jerusalem Daylight Time)" }
+{ "_id" : ObjectId("61014d4c4a5afbc854bc741c"), "belt" : 155, "rararaaa" : "Wed Jul 28 2021 16:22:22 GMT+0300 (Jerusalem Daylight Time)" }
+{ "_id" : ObjectId("610159884a5afbc854bc741d"), "belt" : 155, "lastmodifiy" : "Wed Jul 28 2021 16:20:08 GMT+0300 (Jerusalem Daylight Time)", "name" : "asm;a", "rararaaa" : "Wed Jul 28 2021 16:22:22 GMT+0300 (Jerusalem Daylight Time)" }
+> db.ninjas.find({belt : { $gt :  30, $lt : 165}});
+{ "_id" : ObjectId("61014d264a5afbc854bc741a"), "interests" : [ "snowboarding" ], "fuck" : [ "snowboarding" ], "newo" : 0, "belt" : 155, "rararaaa" : "Wed Jul 28 2021 16:22:22 GMT+0300 (Jerusalem Daylight Time)" }
+{ "_id" : ObjectId("61014d3e4a5afbc854bc741b"), "belt" : 155, "rararaaa" : "Wed Jul 28 2021 16:22:22 GMT+0300 (Jerusalem Daylight Time)" }
+{ "_id" : ObjectId("61014d4c4a5afbc854bc741c"), "belt" : 155, "rararaaa" : "Wed Jul 28 2021 16:22:22 GMT+0300 (Jerusalem Daylight Time)" }
+{ "_id" : ObjectId("610159884a5afbc854bc741d"), "belt" : 155, "lastmodifiy" : "Wed Jul 28 2021 16:20:08 GMT+0300 (Jerusalem Daylight Time)", "name" : "asm;a", "rararaaa" : "Wed Jul 28 2021 16:22:22 GMT+0300 (Jerusalem Daylight Time)" }
+> db.ninjas.find({belt : { $gt :  30, $lt : 145}});
+> db.ninjas.find({belt : { $gt :  165, $lt : 156}});
+>
