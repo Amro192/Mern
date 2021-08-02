@@ -1,24 +1,30 @@
-import logo from './logo.svg';
 import './App.css';
-
+import BoxForm from './components/BoxForm';
+import Box from './components/Box';
+import { useState } from 'react';
+import React from 'react';
 function App() {
+
+  const [box, setBox] = useState([]);
+
+
+  const createBox = (height, width, color) => {
+    var boxadd= {
+      height: (height + "px"),
+      width: (width + "px"),
+      color: color
+    }
+
+    setBox([...box, boxadd]);
+    console.log(box);
+
+
+  }
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <BoxForm proparity={createBox} />
+      <Box boxadd={box} />
+    </>
   );
 }
 
